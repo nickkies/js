@@ -2,7 +2,7 @@ export type AnyObject = {
   [key: string]: any;
 };
 
-export type ValidationRule = {
+export type ValidateRule = {
   rule: RegExp;
   match: boolean;
   message: string;
