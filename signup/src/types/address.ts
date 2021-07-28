@@ -4,7 +4,7 @@ export type Address = {
   address2: string | '';
 };
 
-export type DaumAdddress = {
+export type DaumAddress = {
   address: string;
   autoJibunAddress: string;
   roadAddress: string;
