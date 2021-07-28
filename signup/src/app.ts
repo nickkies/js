@@ -1,7 +1,7 @@
 import template from './app.template';
 import { CantContainWhitespace, CantStartNumber, MinimumLengthLimit } from './constant';
 import { AnyObject } from './types';
-import { TextField } from './views';
+import { TextField, PasswordField } from './views';
 
 export default class App {
   template = template;
@@ -33,6 +33,10 @@ export default class App {
       id: 'email', label: '이메일', type: 'email', placeholder: '이메일을 입력해주세요.', require: true,
     });
 
+    const passwordField = new PasswordField('#required-fields', {
+      id: 'password', label: '비밀번호', placeholder: '비밀번호를 입력하세요',
+    })
+
     nameField.addValidateRule(CantContainWhitespace);
     nameField.addValidateRule(CantStartNumber);
     nameField.addValidateRule(MinimumLengthLimit(2));
@@ -45,6 +49,7 @@ export default class App {
     this.fields.push(nameField);
     this.fields.push(idField);
     this.fields.push(emailField);
+    this.fields.push(passwordField);
   }
 
   private validFieldMonitor = () => {
@@ -74,6 +79,7 @@ export default class App {
 
   public render = () => {
     this.container.innerHTML = this.template(this.data);
+    console.log(this.fields)
     this.fields.forEach(field => {
       field.render(true);
     });
