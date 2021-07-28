@@ -25,11 +25,26 @@ export default class App {
       id: 'name', label: '이름', type: 'text', placeholder: '이름을 입력해주세요.', require: true,
     });
 
+    const idField = new TextField('#required-fields', {
+      id: 'id', label: '아이디', type: 'text', placeholder: '아이디를 입력해주세요.', require: true,
+    });
+
+    const emailField = new TextField('#required-fields', {
+      id: 'email', label: '이메일', type: 'email', placeholder: '이메일을 입력해주세요.', require: true,
+    });
+
     nameField.addValidateRule(CantContainWhitespace);
     nameField.addValidateRule(CantStartNumber);
-    nameField.addValidateRule(MinimumLengthLimit(1));
+    nameField.addValidateRule(MinimumLengthLimit(2));
+
+    idField.addValidateRule(CantContainWhitespace);
+    idField.addValidateRule(MinimumLengthLimit(2));
+
+    emailField.addValidateRule(CantContainWhitespace);
 
     this.fields.push(nameField);
+    this.fields.push(idField);
+    this.fields.push(emailField);
   }
 
   private validFieldMonitor = () => {
